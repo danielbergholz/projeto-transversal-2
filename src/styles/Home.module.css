@@ -1,0 +1,16 @@
+.title {
+  color: #222;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+.image-container {
+  z-index: -1;
+  opacity: 0.2;
+}
