@@ -25,4 +25,10 @@
     height: max-content;
     background-color: rgb(255, 55, 55);
     color: whitesmoke;
+    
 }
+
+.btnhome:hover{
+    background-color: grey;
+}
+
