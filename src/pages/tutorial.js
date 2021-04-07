@@ -1,4 +1,4 @@
-//import Image from 'next/image';
+import Image from 'next/image';
 import styles from './../styles/Sobre.module.css';
 import Topbar from './../components/Appbar/topbar.js';
 
@@ -10,12 +10,12 @@ export default function Tutorail() {
                 <h1>Tutorial</h1>
                 <hr className={styles.line}></hr>           
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Para utilização da aplicação de Previsão de Ativos Financeiros, será apresentado os passos seguintes do tutorial.
+                    A tecnlogia que é utilizada na aplicação irá automaticamente retornar ao usuário a previsão do ativo financeiro selecionado.
+                    Sendo que os dados em questão são atualizados diariamente com a realidade dos acontecimentos do Sistema Financeiro, dessa forma a expectativa é trazer uma previsão mais próxima possível, baseada em dados científicos.                   
                 </p>
-            </div>                     
+                <Image src="/resized-pietchart.png"  width="650px" height="500px" alt="BG"></Image>
+            </div>                  
       </body>
   )
 }

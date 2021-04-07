@@ -101,9 +101,11 @@ export default function PersistentDrawerRight() {
         })}
       >
         <Toolbar>
-          <Typography variant="h6" noWrap className={classes.title}>
-            UnB | Previsão de Ativos Financeiros
-          </Typography>
+          
+            <Typography variant="h6" noWrap className={classes.title}>
+              <a href="/">UnB | Previsão de Ativos Financeiros</a>
+            </Typography>
+
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -137,7 +139,7 @@ export default function PersistentDrawerRight() {
         </div>
         <Divider />
         <List>
-          {['Home', 'Ativos Financeiro', 'Sobre', 'Contato'].map((text, index) => (
+          {['Home', 'Ativos Financeiro', 'Tutorial', 'Sobre'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
