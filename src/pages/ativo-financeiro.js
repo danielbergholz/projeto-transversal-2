@@ -1,4 +1,6 @@
 import { useState, useCallback } from 'react'
+
+import { newsApi } from '../services/api'
 import Button from '../components/Button'
 import styles from '../styles/AtivoFinanceiro.module.css'
 
@@ -6,13 +8,19 @@ export default function AtivoFinanceiro() {
   const [loading, setLoading] = useState(false)
   const [selectedStock, setSelectedStock] = useState(null)
 
-  const loadGraph = useCallback(
-    (stock) => {
+  const loadGraphAndNews = useCallback(
+    async (stock) => {
       setLoading(true)
       setSelectedStock(stock)
-      setTimeout(() => {
-        setLoading(false)
-      }, 800)
+
+      try {
+        const { data } = await newsApi.get(`/news/petrobras`)
+        console.log({ data })
+      } catch (err) {
+        console.log({ err })
+      }
+
+      setLoading(false)
     },
     [setLoading, setSelectedStock]
   )
@@ -21,10 +29,10 @@ export default function AtivoFinanceiro() {
     <div className={styles.center}>
       <div className={styles.header}>
         <h1>Selecione o ativo financeiro</h1>
-        <Button onClick={() => loadGraph('petrobras')}>Petrobras</Button>
-        <Button onClick={() => loadGraph('ambev')}>Ambev</Button>
-        <Button onClick={() => loadGraph('itausa')}>Itaúsa</Button>
-        <Button onClick={() => loadGraph('cielo')}>Cielo</Button>
+        <Button onClick={() => loadGraphAndNews('petrobras')}>Petrobras</Button>
+        <Button onClick={() => loadGraphAndNews('ambev')}>Ambev</Button>
+        <Button onClick={() => loadGraphAndNews('itausa')}>Itaúsa</Button>
+        <Button onClick={() => loadGraphAndNews('cielo')}>Cielo</Button>
       </div>
       <div className={styles.graph}>
         {selectedStock && loading && <img src="/spinner.png" width="80px" />}
