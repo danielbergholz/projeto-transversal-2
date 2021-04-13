@@ -11,14 +11,14 @@ export default function Sobre() {
       <div className={styles.center}>
         <h1>Projeto de Previsão de Ativos Financeiros</h1>
         <hr className={styles.line}></hr>
+
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          <b><i>UnB - FT - ENE</i></b>
+          <br></br>
+          O projeto de previsão de ativos financeiros, idealizado como o projeto final da disciplina de Projeto Transversal 2
+          é uma aplicação que visa como objetivo principal trazer aos usuários uma expectativa do comportamento de ativos financeiros. 
+          Como base a previsão proposta se deve ao uso das tecnologias empregadas na implementação do projeto, sendo a principal a utilização da tecnologia de 
+          Machine Learning de forma que foi desenvolvido um algoritmo próprio que é atualizado diariamente com os dados reais do mercado financeiro de forma a aumentar ao máximo a acurácia da expectativa gerada.
         </p>
 
         <br></br>

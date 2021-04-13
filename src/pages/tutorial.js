@@ -1,4 +1,5 @@
-import Image from 'next/image';
+//import Image from 'next/image';
+import Link from 'next/link';
 import styles from './../styles/Sobre.module.css';
 import Topbar from './../components/Appbar/topbar.js';
 
@@ -14,7 +15,18 @@ export default function Tutorail() {
                     A tecnlogia que é utilizada na aplicação irá automaticamente retornar ao usuário a previsão do ativo financeiro selecionado.
                     Sendo que os dados em questão são atualizados diariamente com a realidade dos acontecimentos do Sistema Financeiro, dessa forma a expectativa é trazer uma previsão mais próxima possível, baseada em dados científicos.                   
                 </p>
-                <Image src="/resized-pietchart.png"  width="650px" height="500px" alt="BG"></Image>
+
+                <div className={styles.start}>
+                    <br></br>
+                    <h3>PASSO-A-PASSO</h3>
+                    <p>1°) Selecionar ativo financeiro desejado</p>
+                    <p>1°) Selecionar ativo financeiro desejado</p>
+                    <p>1°) Selecionar ativo financeiro desejado</p>
+                    <p>1°) Selecionar ativo financeiro desejado</p>
+                    <p>1°) Selecionar ativo financeiro desejado</p>
+                    <br></br>
+                </div>
+   
             </div>                  
       </body>
   )

@@ -22,11 +22,18 @@
     font-size: xx-large;
     width: 350px;
     height: max-content;
-    background-color: rgb(255, 55, 55);
+    background-color: rgb(156, 155, 155);
     color: whitesmoke;
     
 }
 
 .btnhome:hover{
-    background-color: grey;
+    background-color: rgb(241, 36, 63);
+}
+
+.start{
+    text-align: center;
+    width: auto;
+    background-color: rgb(241, 36, 63);
+    color: whitesmoke;
 }
