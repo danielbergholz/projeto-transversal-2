@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 
-import { newsApi } from '../services/api'
+import { newsApi, api } from '../services/api'
 import Button from '../components/Button'
 import styles from '../styles/AtivoFinanceiro.module.css'
 import Topbar from './../components/Appbar/topbar.js'
@@ -9,13 +9,10 @@ export default function AtivoFinanceiro() {
   const [loading, setLoading] = useState(false)
   const [selectedStock, setSelectedStock] = useState(null)
   const [news, setNews] = useState([])
+  const [graph, setGraph] = useState({})
 
-  const loadGraphAndNews = useCallback(
+  const loadNews = useCallback(
     async (stock) => {
-      setLoading(true)
-      setNews([])
-      setSelectedStock(stock)
-
       try {
         const { data } = await newsApi.get(`/news/${stock}`)
         setNews(data)
@@ -23,10 +20,36 @@ export default function AtivoFinanceiro() {
       } catch (err) {
         console.log({ err })
       }
+    },
+    [setNews]
+  )
+
+  const loadGraph = useCallback(
+    async (stock) => {
+      try {
+        // chamada estatica pra petrobras por enquanto
+        const { data } = await api.get(`/PETR4`)
+        setGraph(data)
+        console.log({ data })
+      } catch (err) {
+        console.log({ err })
+      }
+    },
+    [setGraph]
+  )
+
+  const loadGraphAndNews = useCallback(
+    async (stock) => {
+      setLoading(true)
+      setNews([])
+      setGraph({})
+      setSelectedStock(stock)
+
+      await Promise.all([loadNews(stock), loadGraph(stock)])
 
       setLoading(false)
     },
-    [setLoading, setSelectedStock, setNews]
+    [setLoading, loadNews, loadGraph, setNews, setGraph]
   )
 
   return (
