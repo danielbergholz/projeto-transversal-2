@@ -27,9 +27,11 @@ export default function Tutorail() {
                 </div>
 
                 <br></br>
-                <Link href="/chart">                   
+                <Link href="/ativo-financeiro">                   
                     <button className={styles.btnhome}>Gerar Gráfico</button>                    
                 </Link>
+
+                <br></br>
    
             </div>                  
       </body>

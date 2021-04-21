@@ -1,15 +1,22 @@
 import { useState, useCallback } from 'react'
+import React, { Component } from 'react';
 
 import { newsApi, api } from '../services/api'
 import Button from '../components/Button'
 import styles from '../styles/AtivoFinanceiro.module.css'
 import Topbar from './../components/Appbar/topbar.js'
+import Grafico from '../components/Graph/grafico'
+
+  
 
 export default function AtivoFinanceiro() {
   const [loading, setLoading] = useState(false)
   const [selectedStock, setSelectedStock] = useState(null)
   const [news, setNews] = useState([])
   const [graph, setGraph] = useState({})
+  const [date, setDate] = useState([])
+  const [real, setReal] = useState([])
+  const [tested, setTested] = useState([])
 
   const loadNews = useCallback(
     async (stock) => {
@@ -22,7 +29,7 @@ export default function AtivoFinanceiro() {
       }
     },
     [setNews]
-  )
+  ) 
 
   const loadGraph = useCallback(
     async (stock) => {
@@ -30,6 +37,9 @@ export default function AtivoFinanceiro() {
         // chamada estatica pra petrobras por enquanto
         const { data } = await api.get(`/PETR4`)
         setGraph(data)
+        setDate(data.values.date)
+        setReal(data.values.real)
+        setTested(data.values.tested)
         console.log({ data })
       } catch (err) {
         console.log({ err })
@@ -37,6 +47,8 @@ export default function AtivoFinanceiro() {
     },
     [setGraph]
   )
+  
+  
 
   const loadGraphAndNews = useCallback(
     async (stock) => {
@@ -67,8 +79,10 @@ export default function AtivoFinanceiro() {
         </div>
         <div className={styles.graph}>
           {selectedStock && loading && <img src="/spinner.png" width="80px" />}
-          {selectedStock && !loading && <h1>Gráfico carregado</h1>}
+          {selectedStock && !loading && <Grafico date = {date} real = {real} tested = {tested} > </Grafico>}
         </div>
+        
+        <br></br>
         <div className={styles.news}>
           {selectedStock &&
             news.length !== 0 &&
@@ -80,7 +94,7 @@ export default function AtivoFinanceiro() {
                 </a>
               </div>
             ))}
-        </div>
+        </div>	
       </div>
     </>
   )
