@@ -26,16 +26,12 @@ export default function Sobre() {
         <Image src="/resized-financeiro.png" width="704px" height="650px" />
 
         <br></br>
-        <Link href="/tutorial">
-          <a>
-            <button className={styles.btnhome}>Tutorial</button>
-          </a>
+        <Link href="/tutorial">          
+            <button className={styles.btnhome}>Tutorial</button>          
         </Link>
         <br></br>
-        <Link href="/ativo-financeiro">
-          <a>
-            <button className={styles.btnhome}>Solicitar Previsão</button>
-          </a>
+        <Link href="/ativo-financeiro">         
+            <button className={styles.btnhome}>Solicitar Previsão</button>          
         </Link>
         <br></br>
       </div>

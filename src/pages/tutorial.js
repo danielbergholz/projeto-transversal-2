@@ -1,4 +1,3 @@
-//import Image from 'next/image';
 import Link from 'next/link';
 import styles from './../styles/Sobre.module.css';
 import Topbar from './../components/Appbar/topbar.js';
@@ -19,13 +18,18 @@ export default function Tutorail() {
                 <div className={styles.start}>
                     <br></br>
                     <h3>PASSO-A-PASSO</h3>
-                    <p>1°) Selecionar ativo financeiro desejado</p>
-                    <p>1°) Selecionar ativo financeiro desejado</p>
-                    <p>1°) Selecionar ativo financeiro desejado</p>
-                    <p>1°) Selecionar ativo financeiro desejado</p>
-                    <p>1°) Selecionar ativo financeiro desejado</p>
+                    <p>1°) Ir para página de previsão de ativos</p>
+                    <p>2°) Selecionar o ativo financeiro desejado</p>
+                    <p>3°) Gerar o gráfico da expectativa retornado</p>
+                    <p>4°) Selecionar período específico de tempo que busca previsão</p>
+                    <p>5°) Gerar notícias relacionadas</p>
                     <br></br>
                 </div>
+
+                <br></br>
+                <Link href="/chart">                   
+                    <button className={styles.btnhome}>Gerar Gráfico</button>                    
+                </Link>
    
             </div>                  
       </body>
