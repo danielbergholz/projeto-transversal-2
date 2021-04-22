@@ -17,6 +17,7 @@ export default function AtivoFinanceiro() {
   const [date, setDate] = useState([])
   const [real, setReal] = useState([])
   const [tested, setTested] = useState([])
+  const [previsao, setPrevisao] = useState([])
 
   const loadNews = useCallback(
     async (stock) => {
@@ -40,6 +41,7 @@ export default function AtivoFinanceiro() {
         setDate(data.values.date)
         setReal(data.values.real)
         setTested(data.values.tested)
+        setPrevisao(data.values.forecast)
         console.log({ data })
       } catch (err) {
         console.log({ err })
@@ -79,7 +81,7 @@ export default function AtivoFinanceiro() {
         </div>
         <div className={styles.graph}>
           {selectedStock && loading && <img src="/spinner.png" width="80px" />}
-          {selectedStock && !loading && <Grafico date = {date} real = {real} tested = {tested} > </Grafico>}
+          {selectedStock && !loading && <Grafico date = {date} real = {real} tested = {tested} previsao = {previsao}> </Grafico>}
         </div>
         
         <br></br>
@@ -90,6 +92,7 @@ export default function AtivoFinanceiro() {
               <div key={index} className={styles.box}>
                 <a href={item.link} target="_blank">
                   <h2>{item.company}</h2>
+                  <h4>{item.date}</h4>
                   <p>{item.title}</p>
                 </a>
               </div>

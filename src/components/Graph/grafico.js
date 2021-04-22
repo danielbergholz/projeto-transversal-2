@@ -27,7 +27,7 @@ class grafico extends Component {
             label:'Real',
             data:this.props.real,
             borderColor:[
-                'rgb(245, 100, 13)'
+                'rgb(240,128,128)'
             ],
             borderWidth: 1,
             responsive: true
@@ -36,7 +36,13 @@ class grafico extends Component {
             label:'Teste',
             data: this.props.tested,
             borderColor:[
-              'rgb(106,90,205)'
+              'rgb(176,224,230)'
+            ]
+          },{
+            label:'Previsao',
+            data: this.props.previsao,
+            borderColor:[
+            'rgb(255,69,0)'
             ]
           }
         ]
