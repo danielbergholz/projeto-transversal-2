@@ -1,13 +1,11 @@
 import { useState, useCallback } from 'react'
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 import { newsApi, api } from '../services/api'
 import Button from '../components/Button'
 import styles from '../styles/AtivoFinanceiro.module.css'
 import Topbar from './../components/Appbar/topbar.js'
 import Grafico from '../components/Graph/grafico'
-
-  
 
 export default function AtivoFinanceiro() {
   const [loading, setLoading] = useState(false)
@@ -30,7 +28,7 @@ export default function AtivoFinanceiro() {
       }
     },
     [setNews]
-  ) 
+  )
 
   const loadGraph = useCallback(
     async (stock) => {
@@ -49,8 +47,6 @@ export default function AtivoFinanceiro() {
     },
     [setGraph]
   )
-  
-  
 
   const loadGraphAndNews = useCallback(
     async (stock) => {
@@ -81,9 +77,18 @@ export default function AtivoFinanceiro() {
         </div>
         <div className={styles.graph}>
           {selectedStock && loading && <img src="/spinner.png" width="80px" />}
-          {selectedStock && !loading && <Grafico date = {date} real = {real} tested = {tested} previsao = {previsao}> </Grafico>}
+          {selectedStock && !loading && (
+            <Grafico
+              date={date}
+              real={real}
+              tested={tested}
+              previsao={previsao}
+            >
+              {' '}
+            </Grafico>
+          )}
         </div>
-        
+
         <br></br>
         <div className={styles.news}>
           {selectedStock &&
@@ -92,12 +97,12 @@ export default function AtivoFinanceiro() {
               <div key={index} className={styles.box}>
                 <a href={item.link} target="_blank">
                   <h2>{item.company}</h2>
-                  <h4>{item.date}</h4>
+                  <h4>{new Date(item.date).toLocaleDateString('pt-BR')}</h4>
                   <p>{item.title}</p>
                 </a>
               </div>
             ))}
-        </div>	
+        </div>
       </div>
     </>
   )
