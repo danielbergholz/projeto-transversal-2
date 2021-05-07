@@ -32,6 +32,10 @@ export default function Tutorail() {
                 </Link>
 
                 <br></br>
+
+                <div>
+                    <br></br>
+                </div>
    
             </div>                  
       </body>

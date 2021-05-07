@@ -1,11 +1,12 @@
 import { useState, useCallback } from 'react'
 import React, { Component } from 'react'
-
 import { newsApi, api } from '../services/api'
 import Button from '../components/Button'
 import styles from '../styles/AtivoFinanceiro.module.css'
 import Topbar from './../components/Appbar/topbar.js'
 import Grafico from '../components/Graph/grafico'
+import Datepicker from '../components/Calendar/Datepicker.js'
+import Calendar from 'react-calendar'
 
 export default function AtivoFinanceiro() {
   const [loading, setLoading] = useState(false)
@@ -67,14 +68,18 @@ export default function AtivoFinanceiro() {
       <Topbar />
       <div className={styles.center}>
         <div className={styles.header}>
-          <h1>Selecione o ativo financeiro</h1>
+          <h1>Selecione o ativo financeiro e em seguida a data</h1>
           <Button onClick={() => loadGraphAndNews('petrobras')}>
             Petrobras
           </Button>
           <Button onClick={() => loadGraphAndNews('ambev')}>Ambev</Button>
           <Button onClick={() => loadGraphAndNews('itau')}>Itaú</Button>
-          <Button onClick={() => loadGraphAndNews('cielo')}>Cielo</Button>
+          <Button onClick={() => loadGraphAndNews('cielo')}>Cielo</Button>       
         </div>
+
+        <br></br>
+        <Datepicker />
+
         <div className={styles.graph}>
           {selectedStock && loading && <img src="/spinner.png" width="80px" />}
           {selectedStock && !loading && (

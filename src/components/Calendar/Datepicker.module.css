@@ -1,0 +1,7 @@
+.header button:hover {
+  background-color: #f50057;
+}
+
+.header button:focus {
+  background-color: #f50057;
+}

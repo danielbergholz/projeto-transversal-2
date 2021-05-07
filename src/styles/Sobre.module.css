@@ -13,7 +13,7 @@
 }
 
 .line{    
-    border: 1px solid rgb(255, 145, 145);
+    border: 1px solid #f50057;
 }
 
 .btnhome{
@@ -28,12 +28,12 @@
 }
 
 .btnhome:hover{
-    background-color: rgb(241, 36, 63);
+    background-color: #f50057;
 }
 
 .start{
     text-align: center;
     width: auto;
-    background-color: rgb(241, 36, 63);
+    background-color: #f50057;
     color: whitesmoke;
 }
