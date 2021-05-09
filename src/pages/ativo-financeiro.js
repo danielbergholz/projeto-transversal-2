@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import React, { Component } from 'react'
+import React from 'react'
 import { newsApi, api } from '../services/api'
 import Button from '../components/Button'
 import styles from '../styles/AtivoFinanceiro.module.css'
@@ -7,6 +7,13 @@ import Topbar from './../components/Appbar/topbar.js'
 import Grafico from '../components/Graph/grafico'
 import Datepicker from '../components/Calendar/Datepicker.js'
 import Calendar from 'react-calendar'
+
+const mapStockToName = {
+  petrobras: 'PETR4',
+  ambev: 'AMBEV',
+  cielo: 'CIELO',
+  itau: 'ITAU',
+}
 
 export default function AtivoFinanceiro() {
   const [loading, setLoading] = useState(false)
@@ -23,7 +30,6 @@ export default function AtivoFinanceiro() {
       try {
         const { data } = await newsApi.get(`/news/${stock}`)
         setNews(data)
-        console.log({ data })
       } catch (err) {
         console.log({ err })
       }
@@ -31,37 +37,31 @@ export default function AtivoFinanceiro() {
     [setNews]
   )
 
-  const loadGraph = useCallback(
-    async (stock) => {
-      try {
-        // chamada estatica pra petrobras por enquanto
-        const { data } = await api.get(`/PETR4`)
-        setGraph(data)
-        setDate(data.values.date)
-        setReal(data.values.real)
-        setTested(data.values.tested)
-        setPrevisao(data.values.forecast)
-        console.log({ data })
-      } catch (err) {
-        console.log({ err })
-      }
-    },
-    [setGraph]
-  )
+  const loadGraph = async (stock) => {
+    try {
+      // chamada estatica pra petrobras por enquanto
+      const { data } = await api.get('/' + mapStockToName[stock])
+      setGraph(data)
+      setDate(data.values.date)
+      setReal(data.values.real)
+      setTested(data.values.tested)
+      setPrevisao(data.values.forecast)
+      console.log({ data })
+    } catch (err) {
+      console.log({ err })
+    }
+  }
 
-  const loadGraphAndNews = useCallback(
-    async (stock) => {
-      setLoading(true)
-      setNews([])
-      setGraph({})
-      setSelectedStock(stock)
+  const loadGraphAndNews = async (stock) => {
+    setLoading(true)
+    setNews([])
+    setGraph({})
+    setSelectedStock(stock)
 
-      await Promise.all([loadNews(stock), loadGraph(stock)])
+    await Promise.all([loadNews(stock), loadGraph(stock)])
 
-      setLoading(false)
-    },
-    [setLoading, loadNews, loadGraph, setNews, setGraph]
-  )
+    setLoading(false)
+  }
 
   return (
     <>
@@ -74,7 +74,7 @@ export default function AtivoFinanceiro() {
           </Button>
           <Button onClick={() => loadGraphAndNews('ambev')}>Ambev</Button>
           <Button onClick={() => loadGraphAndNews('itau')}>Itaú</Button>
-          <Button onClick={() => loadGraphAndNews('cielo')}>Cielo</Button>       
+          <Button onClick={() => loadGraphAndNews('cielo')}>Cielo</Button>
         </div>
 
         <br></br>
