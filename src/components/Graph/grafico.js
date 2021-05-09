@@ -1,62 +1,53 @@
-import React, { Component, useState } from 'react';
-import Chart from './Chart.js';
-
+import React, { Component, useState } from 'react'
+import Chart from './Chart.js'
 
 class grafico extends Component {
-
-  constructor(props){
-    super(props);
+  constructor(props) {
+    super(props)
     this.state = {
-      chartData:{},
+      chartData: {},
     }
   }
 
-
-
-  componentWillMount(){
-   // this.getchartData(); // this should be this.getChartData();
-    this.getChartData();
+  componentWillMount() {
+    // this.getchartData(); // this should be this.getChartData();
+    this.getChartData()
   }
 
-  getChartData(){
+  getChartData() {
     this.setState({
-      chartData:{
+      chartData: {
         labels: this.props.date,
-        datasets:[
+        datasets: [
           {
-            label:'Real',
-            data:this.props.real,
-            borderColor:[
-                'rgb(240,128,128)'
-            ],
+            label: 'Real',
+            data: this.props.real,
+            borderColor: ['rgb(240,128,128)'],
             borderWidth: 1,
-            responsive: true
-
-          },{
-            label:'Teste',
+            responsive: true,
+          },
+          {
+            label: 'Teste',
             data: this.props.tested,
-            borderColor:[
-              'rgb(176,224,230)'
-            ]
-          },{
-            label:'Previsao',
+            borderColor: ['rgb(176,224,230)'],
+          },
+          {
+            label: 'Previsao',
             data: this.props.previsao,
-            borderColor:[
-            'rgb(255,69,0)'
-            ]
-          }
-        ]
-      }
-    });
+            borderColor: ['rgb(255,69,0)'],
+          },
+        ],
+      },
+    })
   }
 
   render() {
     return (
-        <div className="grafico">
-            <Chart chartData={this.state.chartData} legendPosition="bottom"/>
-        </div>
-    );
+      <div className="grafico">
+        <Chart chartData={this.state.chartData} legendPosition="bottom" />
+      </div>
+    )
   }
 }
 
-export default grafico;
+export default grafico

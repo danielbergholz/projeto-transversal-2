@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import React from 'react'
 import { newsApi, api } from '../services/api'
 import Button from '../components/Button'
@@ -24,22 +24,25 @@ export default function AtivoFinanceiro() {
   const [real, setReal] = useState([])
   const [tested, setTested] = useState([])
   const [previsao, setPrevisao] = useState([])
+  const [selectedDate, setSelectedDate] = useState('')
+  const [today, setToday] = useState('')
 
   const loadNews = useCallback(
     async (stock) => {
       try {
-        const { data } = await newsApi.get(`/news/${stock}`)
+        const { data } = await newsApi.get(
+          `/news/${stock}?from=${selectedDate}&to=${today}`
+        )
         setNews(data)
       } catch (err) {
         console.log({ err })
       }
     },
-    [setNews]
+    [setNews, selectedDate, today]
   )
 
   const loadGraph = async (stock) => {
     try {
-      // chamada estatica pra petrobras por enquanto
       const { data } = await api.get('/' + mapStockToName[stock])
       setGraph(data)
       setDate(data.values.date)
@@ -63,6 +66,12 @@ export default function AtivoFinanceiro() {
     setLoading(false)
   }
 
+  useEffect(() => {
+    if (selectedStock) {
+      loadGraphAndNews(selectedStock)
+    }
+  }, [selectedDate])
+
   return (
     <>
       <Topbar />
@@ -78,7 +87,7 @@ export default function AtivoFinanceiro() {
         </div>
 
         <br></br>
-        <Datepicker />
+        <Datepicker setSelectedDate={setSelectedDate} setToday={setToday} />
 
         <div className={styles.graph}>
           {selectedStock && loading && <img src="/spinner.png" width="80px" />}
