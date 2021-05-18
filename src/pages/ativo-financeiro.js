@@ -31,7 +31,7 @@ export default function AtivoFinanceiro() {
     async (stock) => {
       try {
         const { data } = await newsApi.get(
-          `/news/${stock}?from=${selectedDate}&to=${today}`
+          `/news/date/${stock}?from=${selectedDate}&to=${today}`
         )
         setNews(data)
       } catch (err) {
@@ -111,7 +111,7 @@ export default function AtivoFinanceiro() {
               <div key={index} className={styles.box}>
                 <a href={item.link} target="_blank">
                   <h2>{item.company}</h2>
-                  <h4>{new Date(item.date).toLocaleDateString('pt-BR')}</h4>
+                  <h4>{item.date}</h4>
                   <p>{item.title}</p>
                 </a>
               </div>
